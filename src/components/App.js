@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-//import axios from "axios";
+import axios from "axios";
 import MoviesList from "./MoviesList";
 import SearchMovie from "./SearchMovie";
 import DisplayMovie from "./DisplayMovie";
@@ -14,11 +14,13 @@ function App() {
 
 	
 
-	//const apiurl = ("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4");
+	const apiurl = "http://www.omdbapi.com/?apikey=3e79d2e4"
+	
+	
   
 	const search = (e) => {
 	  if (e.key === "Enter") {
-		fetch("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4" + "&s=" + state.s).then(({ data }) => {
+		axios.get( apiurl + "&s=" + state.s).then(({ data }) => {
 		  let results = data.SearchMovie;
   
 		  setState(prevState => {
@@ -37,8 +39,8 @@ function App() {
 	  }
 	
 	  const openDisplayMovie = id => {
-		fetch("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4" + "&i=" + id).then(({ data }) => {
-		  let result = data;
+		axios.get(apiurl + "&i=" + id).then(({ data }) => {
+		  let result = data.SearchMovie;
 	
 		  console.log(result);
 	

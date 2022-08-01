@@ -1,6 +1,8 @@
 import React from 'react';
 
 function SearchMovie ({ handleInput, search }) {
+	
+
 	return (
 		<div className="searchbox">
 			<input 
