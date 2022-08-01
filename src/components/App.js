@@ -1,10 +1,9 @@
 import React,{useState} from "react";
 import axios from "axios";
-
-import MovieList from "./MoviesList";
+import MoviesList from "./MoviesList";
 import SearchMovie from "./SearchMovie";
-
 import DisplayMovie from "./DisplayMovie";
+
 
 function App() {
 	const [state, setState] = useState({
@@ -13,7 +12,7 @@ function App() {
 	  selected: {}
 	});
 
-	const apiurl = "https://api.themoviedb.org/3/movie/550?api_key=b082632c7b887de3dbcf4651f0252347";
+	const apiurl = fetch ("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4");
   
 	const search = (e) => {
 	  if (e.key === "Enter") {
@@ -35,7 +34,7 @@ function App() {
 		});
 	  }
 	
-	  const openDisplay = id => {
+	  const openDisplayMovie = id => {
 		axios(apiurl + "&i=" + id).then(({ data }) => {
 		  let result = data;
 	
@@ -48,7 +47,7 @@ function App() {
 	  }
 
 	  
-	  const closeDisplay = () => {
+	  const closeDisplayMovie = () => {
 		setState(prevState => {
 		  return { ...prevState, selected: {} }
 		});
@@ -62,9 +61,9 @@ function App() {
 		  <main>
 			<SearchMovie handleInput={handleInput} search={search} />
 	
-			<MovieList results={state.results} openDisplay={openDisplay} />
+			<MoviesList results={state.results} openDisplayMovie={openDisplayMovie} />
 	
-			{(typeof state.selected.Title != "undefined") ? <DisplayMovie selected={state.selected} closeDisplay={closeDisplay} /> : false}
+			{(typeof state.selected.Title != "undefined") ? <DisplayMovie selected={state.selected} closeDisplayMovie={closeDisplayMovie} /> : false}
 		  </main>
 		</div>
 	  );

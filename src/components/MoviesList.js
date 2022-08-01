@@ -1,15 +1,16 @@
 import React from 'react';
 import Result from './Result';
 
-function MovieList ({ results, openDisplayMovie }) {
+function MoviesList ({ results, openDisplayMovie }){
 	return (
 		<section className="results">
-			{results.map(result => (
+			{results && results.map((result) => { return (
 				<Result key={result.imdbID} result={result} openDisplayMovie={openDisplayMovie} />
-			))}
+			)}
+			)}
 		</section>
 	)
 }
 
-export default MovieList;
+export default MoviesList;
 
