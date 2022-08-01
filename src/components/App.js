@@ -1,9 +1,9 @@
 import React, {useState}from "react";
-import axios from 'axios'
-import "../index.css";
+import axios from "axios"
+
 import MovieList from "./MoviesList";
 import SearchMovie from "./SearchMovie";
-import Result from "./Result";
+//import Result from "./Result";
 import DisplayMovie from "./DisplayMovie";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
 		axios(apiurl + "&i=" + id).then(({ data }) => {
 		  let result = data;
 	
-		  console.log(Result);
+		  console.log(result);
 	
 		  setState(prevState => {
 			return { ...prevState, selected: result }
