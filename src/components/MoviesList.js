@@ -1,17 +1,15 @@
 import React from 'react';
-import Result from './Result'
+import Result from './Result';
 
-function MovieList ({ results, openPopup }) {
+function MovieList ({ results, openDisplayMovie }) {
 	return (
 		<section className="results">
 			{results.map(result => (
-				<Result key={result.imdbID} result={result} openPopup={openPopup} />
+				<Result key={result.imdbID} result={result} openDisplayMovie={openDisplayMovie} />
 			))}
 		</section>
 	)
 }
-
-
 
 export default MovieList;
 
