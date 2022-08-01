@@ -4,19 +4,28 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-header h1 {
+h1 {
 	color: black;
 	font-size: 48px;
 	font-weight: 500;
 	text-align: center;
+	padding: 10px 15px 10px;
 }
 
 main {
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
+	padding-top: 20px;
+	
 }
 
+.row{
+	display: grid;
+	grid-template-columns: 3fr 6fr 6fr;
+	row-gap: 50px;
+	column-gap: 120px;
+}
 section {
 	padding: 15px;
 }
@@ -37,7 +46,13 @@ section {
 	font-size: 20px;
 	font-weight: 300;
 
+	text-align: center;
+
 	
+}
+
+.searchbox:focus {
+	box-shadow: 0px 0px 8px 3px #4484C4;
 }
 
 button{
@@ -46,27 +61,27 @@ button{
 	height: 30px;
 }
 
-.results {
-	display: flex;
+.result {
+	display: grid;
 	flex-wrap: wrap;
 	margin: 0px -15px;
 }
 
-.results .result {
+.result .result {
 	width: 33.333%;
 	min-width: 250px;
 	padding: 15px;
-	display: flex;
+	display: grid;
 	flex-direction: column;
 	cursor: pointer;
 }
 
-.results .result img {
-	display: block;
+.result .result img {
+	display: grid;
 	width: 100%;
 }
 
-.results .result h3 {
+.result .result h3 {
 	color: #FFF;
 	font-size: 20px;
 	font-weight: 600;
@@ -76,23 +91,23 @@ button{
 	transition: 0.4s ease-out;
 }
 
-.results .result:hover h3 {
+.result .result:hover h3 {
 	background: #FFF;
 	color: #223343;
 }
 
-.display {
+.displaymovie {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
 	background-color: #445565;
-
+    overflow-y: scroll;
 	
 }
 
-.display .content {
+.displaymovie .content {
 	display: block;
 	width: 100%;
 	max-width: 960px;
@@ -102,37 +117,37 @@ button{
 	color: #FFF;
 }
 
-.display .content h2 {
+.displaymovie .content h2 {
 	font-size: 28px;
 	font-weight: 600;
 }
-.display .content h2 span {
+.displaymovie .content h2 span {
 	font-weight: 300;
 	font-size: 20px;
 }
 
-.display .content .rating {
+.displaymovie .content .rating {
 	margin-bottom: 30px;
 }
 
-.display .content .plot {
+.displaymovie .content .plot {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0px -15px 30px;
 }
 
-.display .content .plot img {
+.displaymovie .content .plot img {
 	flex: 1 1 50%;
 	max-width: 300px;
 	padding: 0px 15px;
 }
 
-.display .content .plot p {
+.displaymovie .content .plot p {
 	flex: 1 1 50%;
 	padding: 15px;
 }
 
-.display .content .close {
+.displaymovie .content .close {
 	display: inline-block;
 	padding: 15px 30px;
 	font-size: 18px;
@@ -154,7 +169,8 @@ button{
 	padding: 0;
 	box-sizing: border-box;
 }
-.display .content .close:hover {
+
+.displaymovie .content .close:hover {
 	background: #223343;
 }
 
@@ -162,4 +178,6 @@ input{
 	width: 300px;
 	height: 40px;
 }
+
+
 

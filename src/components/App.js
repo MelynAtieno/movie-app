@@ -1,78 +1,60 @@
-import React,{useState} from "react";
-import axios from "axios";
-import MoviesList from "./MoviesList";
-import SearchMovie from "./SearchMovie";
-import DisplayMovie from "./DisplayMovie";
+import React,{useEffect, useState} from "react";
+import Search from "./Search";
+import Result from "./Result";
 
+
+const apiurl = "https://www.omdbapi.com/?s=batman&apikey=3e79d2e4"
 
 function App() {
-	const [state, setState] = useState({
-	  s: "",
-	  results: [],
-	  selected: {}
-	});
-
+	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(null);
 	
 
-	const apiurl = //"http://www.omdbapi.com/?apikey=3e79d2e4"
-	"https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4"
-	
-	
-  
-	const search = (e) => {
-	  if (e.key === "Enter") {
-		axios.get( apiurl + "&s=" + state.s).then(({ data }) => {
-		  let results = data.SearchMovie;
-  
-		  setState(prevState => {
-			return { ...prevState, results: results }
-		  })
-		});
-	  }
-	}
-	
-	const handleInput = (e) => {
-		let s = e.target.value;
-	
-		setState(prevState => {
-		  return { ...prevState, s: s }
-		});
-	  }
-	
-	  const openDisplayMovie = id => {
-		axios.get(apiurl + "&i=" + id).then(({ data }) => {
-		  let result = data.SearchMovie;
-	
-		  console.log(result);
-	
-		  setState(prevState => {
-			return { ...prevState, selected: result }
+	useEffect(() => {
+		fetch(apiurl)
+		  .then(res => res.json())
+		  .then(jsonres => {
+			setMovies(jsonres.Search);
 		  });
-		});
-	  }
+	  }, []);
+
+	  const search = searchValue => {
+		setLoading(true);
+		fetch(
+		  searchValue !== ""
+			? `http://www.omdbapi.com/?s=${searchValue}&apikey=3e79d2e4`
+			: `http://www.omdbapi.com/?s=batman&apikey=3e79d2e4`
+		)
+		  .then(res => res.json())
+		  .then(jsonres => {
+			setMovies(jsonres.Search);
+			setLoading(false);
+		  });
+	  };
+	  
+
+	  const handleMovies = movies => {
+		return loading ? (
+		  <span>loading...</span>
+		) : movies !== undefined ? (
+		  movies.map((movie, index) => <Result key={index} movie={movie} />)
+		) : (
+		  <span>There is no movie</span>
+		);
+	  };
 
 	  
-	  const closeDisplayMovie = () => {
-		setState(prevState => {
-		  return { ...prevState, selected: {} }
-		});
-	  }
-	
 	  return (
-		<div className="App">
-		  <header>
-			<h1>Movie Review App</h1>
-		  </header>
-		  <main>
-			<SearchMovie handleInput={handleInput} search={search} />
-	
-			<MoviesList results={state.results} openDisplayMovie={openDisplayMovie} />
-	
-			{(typeof state.selected.Title != "undefined") ? <DisplayMovie selected={state.selected} closeDisplayMovie={closeDisplayMovie} /> : false}
-		  </main>
+
+		<div className="app">
+			<h1>Movie Database App</h1>
+			<Search search={search} />
+		<main>
+		  
+		  <div className="row">{handleMovies(movies)}</div>
+		</main>
 		</div>
 	  );
-	}
-	
+	};
 
 export default App;
