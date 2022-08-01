@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React,{useState} from "react";
 import axios from "axios";
 import MoviesList from "./MoviesList";
 import SearchMovie from "./SearchMovie";
@@ -12,13 +12,9 @@ function App() {
 	  selected: {}
 	});
 
-	useEffect(() => {
-		fetch("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4")
-		  .then(res => res.json())
-		  .then(data => setPoems(data))
-	  }, []);
+	
 
-	//const apiurl = fetch ("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4");
+	const apiurl = fetch ("https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4");
   
 	const search = (e) => {
 	  if (e.key === "Enter") {
