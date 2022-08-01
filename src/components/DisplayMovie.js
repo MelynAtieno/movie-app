@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DisplayMovie({ selected, closePopup }) {
+function DisplayMovie({ selected, closeDisplayMovie }) {
 	return (
 		<section className="display">
 			<div className="content">
@@ -10,7 +10,7 @@ function DisplayMovie({ selected, closePopup }) {
 					<img src={selected.Poster} alt="post" />
 					<p>{selected.Plot}</p>
 				</div>
-				<button className="close" onClick={closePopup}>Close</button>
+				<button className="close" onClick={closeDisplayMovie}>Close</button>
 			</div>
 		</section>
 	)
