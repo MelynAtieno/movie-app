@@ -2,7 +2,7 @@ import React from 'react';
 
 function SearchMovie ({ handleInput, search }) {
 	return (
-		<section className="searchbox">
+		<div className="searchbox">
 			<input 
 				type="text" 
 				placeholder="Enter name of movie..." 
@@ -10,7 +10,7 @@ function SearchMovie ({ handleInput, search }) {
 				onChange={handleInput}
 				onKeyPress={search}
 			/>
-		</section>
+		</div>
 	)
 }
 
