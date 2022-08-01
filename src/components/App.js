@@ -14,7 +14,8 @@ function App() {
 
 	
 
-	const apiurl = "http://www.omdbapi.com/?apikey=3e79d2e4"
+	const apiurl = //"http://www.omdbapi.com/?apikey=3e79d2e4"
+	"https://www.omdbapi.com/?i=tt3896198&apikey=3e79d2e4"
 	
 	
   
