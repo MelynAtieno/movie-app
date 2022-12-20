@@ -22,8 +22,8 @@ function App() {
 		setLoading(true);
 		fetch(
 		  searchValue !== ""
-			? `http://www.omdbapi.com/?s=${searchValue}&apikey=3e79d2e4`
-			: `http://www.omdbapi.com/?s=batman&apikey=3e79d2e4`
+			? `https://www.omdbapi.com/?s=${searchValue}&apikey=3e79d2e4`
+			: `https://www.omdbapi.com/?s=batman&apikey=3e79d2e4`
 		)
 		  .then(res => res.json())
 		  .then(jsonres => {
